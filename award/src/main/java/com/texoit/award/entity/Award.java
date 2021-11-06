@@ -1,5 +1,6 @@
 package com.texoit.award.entity;
 
+import com.texoit.producer.Producer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,13 +20,14 @@ public class Award {
     @Column(name = "ID_AWARD")
     private Integer id;
     private Integer year;
-    private String movie;
+    @Embedded
+    private Movie movie;
     private boolean winner;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="ID_PRODUCER", nullable=false)
     private Producer producer;
 
-    public Award(Integer year, String movie, boolean winner) {
+    public Award(Integer year, Movie movie, boolean winner) {
         this.year = year;
         this.movie = movie;
         this.winner = winner;
@@ -35,7 +37,7 @@ public class Award {
     public String toString() {
         return new StringJoiner(", ", Award.class.getSimpleName() + "[", "]")
                 .add(year + " - ")
-                .add(movie)
+                .add(movie.toString())
                 .toString();
     }
 }

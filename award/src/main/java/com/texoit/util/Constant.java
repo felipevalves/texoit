@@ -1,4 +1,4 @@
-package com.texoit.award.util;
+package com.texoit.util;
 
 public enum Constant {
     POS_YEAR(0),
