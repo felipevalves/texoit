@@ -26,4 +26,9 @@ class ProducerServiceImpl implements ProducerService {
 
         repository.saveAll(producers);
     }
+
+    @Override
+    public List<Producer> findProducerWithMoreThanOneMovie() {
+        return repository.findProducerWithMoreThanOneMovie();
+    }
 }

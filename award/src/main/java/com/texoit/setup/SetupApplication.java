@@ -1,10 +1,9 @@
 package com.texoit.setup;
 
+import com.texoit.award.AwardService;
 import com.texoit.award.entity.Award;
 import com.texoit.producer.Producer;
-import com.texoit.award.AwardRepository;
 import com.texoit.producer.ProducerService;
-import com.texoit.util.Constant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +23,7 @@ public class SetupApplication implements ApplicationRunner {
     @Autowired
     private ProducerService producerService;
     @Autowired
-    private AwardRepository awardRepository;
+    private AwardService awardService;
 
     private FileService csvService = FileServiceSimpleFactory.create();
 
@@ -56,7 +55,6 @@ public class SetupApplication implements ApplicationRunner {
             log.error("Erro to read file ", e);
             return Collections.emptyList();
         }
-
     }
 
     private void prepareAndSaveData(List<List<String>> listData) {
@@ -71,40 +69,17 @@ public class SetupApplication implements ApplicationRunner {
         });
 
         producerService.saveAll(listAllProducer);
-        awardRepository.saveAll(listAward);
+        awardService.saveAll(listAward);
     }
 
-
     private void updateProducers(List<Producer> listAllProducer, List<String> line) {
-
-        if (line.get(Constant.POS_PRODUCER.getKey()) == null)
-            return;
 
         List<Producer> list = csvService.getListProducer(line);
         list.removeAll(listAllProducer);
         listAllProducer.addAll(list);
     }
 
-
-
     private List<Award> getAwards(List<Producer> listAllProducer, List<String> line) {
-
-        if (getYear(line) == -1 ||
-                getMovie(line) == null )
-            return Collections.emptyList();
-
         return csvService.getListAwards(listAllProducer, line);
     }
-
-    private String getMovie(List<String> line) {
-        return line.get(Constant.POS_MOVIE.getKey());
-    }
-
-    private Integer getYear(List<String> line) {
-        if (line.get(Constant.POS_YEAR.getKey()) == null)
-            return -1;
-        return Integer.valueOf(line.get(Constant.POS_YEAR.getKey()));
-    }
-
-
 }

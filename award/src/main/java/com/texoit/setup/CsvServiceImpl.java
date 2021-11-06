@@ -3,7 +3,7 @@ package com.texoit.setup;
 import com.texoit.award.entity.Award;
 import com.texoit.award.entity.Movie;
 import com.texoit.producer.Producer;
-import com.texoit.util.Constant;
+import com.texoit.shared.util.Constant;
 import org.apache.commons.io.FileUtils;
 
 import java.io.BufferedReader;
@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CsvServiceImpl implements FileService {
     @Override
@@ -44,15 +45,20 @@ public class CsvServiceImpl implements FileService {
         if (line.get(Constant.POS_PRODUCER.getKey()) == null)
             return Collections.emptyList();
 
-        var arrayProducers = line.get(Constant.POS_PRODUCER.getKey()).split(",|and");
+        var arrayProducers = line.get(Constant.POS_PRODUCER.getKey()).split(",| and ");
 
         return Arrays.stream(arrayProducers)
+                .filter(name -> !name.isBlank())
                 .map( s -> new Producer(s.trim()))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Award> getListAwards(List<Producer> listAllProducer, List<String> line) {
+
+        if (getYear(line) == -1 || getMovie(line) == null )
+            return Collections.emptyList();
+
         Integer year = getYear(line);
         String movie = getMovie(line);
         boolean winner = getWinner(line);
@@ -65,7 +71,7 @@ public class CsvServiceImpl implements FileService {
                     Award a = new Award(year, new Movie(movie), winner);
                     a.setProducer(p);
                     return a;
-                }).toList();
+                }).collect(Collectors.toList());
     }
 
     private String getMovie(List<String> line) {

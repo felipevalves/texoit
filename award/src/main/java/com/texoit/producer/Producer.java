@@ -24,7 +24,7 @@ public class Producer {
     @Column(unique = true)
     private String name;
 
-    @Transient
+//    @Transient
     @EqualsAndHashCode.Exclude
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "producer")
     private List<Award> listAward;
@@ -61,4 +61,10 @@ public class Producer {
 
         listAward.forEach(this::addAward);
     }
+
+    public boolean isMoreThenOneWin() {
+        return listAward.stream().
+                filter(Award::isWinner).count() > 1;
+    }
+
 }
