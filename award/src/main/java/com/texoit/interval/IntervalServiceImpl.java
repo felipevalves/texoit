@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -35,14 +37,15 @@ public class IntervalServiceImpl implements IntervalService {
 
         List<IntervalDto> listInterval = listProducer.stream()
                 .filter(Producer::isMoreThenOneWin)
-                .map(interval::calculate).toList();
+                .map(interval::calculate)
+                .flatMap(Collection::stream).toList();
 
         int maxInterval = listInterval.stream()
                 .mapToInt(IntervalDto::getInterval)
                 .max()
                 .orElse(0);
 
-        return listInterval.stream().filter(i -> i.getInterval() == maxInterval).toList();
+        return listInterval.stream().filter(i -> i.getInterval() == maxInterval).sorted(Comparator.comparingInt(IntervalDto::getPreviousWin)).toList();
     }
 
     @Override
@@ -54,13 +57,14 @@ public class IntervalServiceImpl implements IntervalService {
 
         List<IntervalDto> listInterval = listProducer.stream()
                 .filter(Producer::isMoreThenOneWin)
-                .map(interval::calculate).toList();
+                .map(interval::calculate)
+                .flatMap(Collection::stream).toList();
 
         int minInterval = listInterval.stream()
                 .mapToInt(IntervalDto::getInterval)
                 .min()
                 .orElse(0);
 
-        return listInterval.stream().filter(i -> i.getInterval() == minInterval).toList();
+        return listInterval.stream().filter(i -> i.getInterval() == minInterval).sorted(Comparator.comparingInt(IntervalDto::getPreviousWin)).toList();
     }
 }

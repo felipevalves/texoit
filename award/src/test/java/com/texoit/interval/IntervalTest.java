@@ -18,6 +18,7 @@ class IntervalTest {
 
         List<IntervalDto> listInterval = intervalService.findWinnerFasterInterval();
         Assertions.assertNotNull(listInterval);
+        System.out.println(listInterval);
     }
 
     @Test
@@ -25,6 +26,7 @@ class IntervalTest {
 
         List<IntervalDto> listInterval = intervalService.findWinnerBiggestInterval();
         Assertions.assertNotNull(listInterval);
+        System.out.println(listInterval);
     }
 
 }

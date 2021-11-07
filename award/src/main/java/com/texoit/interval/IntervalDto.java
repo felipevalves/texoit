@@ -1,8 +1,10 @@
 package com.texoit.interval;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 
-@Data
+@Builder
+@Getter
 public class IntervalDto {
     private String producer;
     private int interval;

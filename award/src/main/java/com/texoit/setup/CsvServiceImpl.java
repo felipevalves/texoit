@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class CsvServiceImpl implements FileService {
     @Override
     public void downloadFile(String url, String destination) throws IOException {
+
         FileUtils.copyURLToFile(
                 new URL(url),
                 new File(destination));

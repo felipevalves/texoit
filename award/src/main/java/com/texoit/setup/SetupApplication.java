@@ -27,8 +27,6 @@ public class SetupApplication implements ApplicationRunner {
 
     private FileService csvService = FileServiceSimpleFactory.create();
 
-    @Value("${url.movie.list}")
-    private String url;
     @Value("${filename}")
     private String filename;
 
@@ -49,10 +47,10 @@ public class SetupApplication implements ApplicationRunner {
 
     private List<List<String>> handleFile() {
         try {
-            csvService.downloadFile(url, filename);
+            //csvService.downloadFile(url, filename);
             return csvService.readFile(filename);
         } catch (IOException e) {
-            log.error("Erro to read file ", e);
+            log.error("Error to read file ", e);
             return Collections.emptyList();
         }
     }
