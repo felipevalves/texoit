@@ -13,4 +13,6 @@ Instruções:
 
 4 - Depois de iniciado o projeto é possível acessar o banco de dados no endereço http://localhost:8081/h2-console ( sem senha).
 
-5 - Para testar o endpoint, acessar http://localhost:8081/swagger-ui.htm
+5 - Para acessar o endpoint http://localhost:8081/award/v1/intervals
+
+6 - Para testar o endpoint com o swagger, acessar http://localhost:8081/swagger-ui.htm
