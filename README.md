@@ -5,14 +5,21 @@ Projeto desenvolvido com SpringBoot e java 17.
 
 Instruções:
 
-1 - Informar a url do csv no arquivo application.properties url.movie.list.
+Clonar o projeto 
 
-2 - mvn package para construir o projeto.
+Informar o caminho do csv no arquivo application.properties -> filename.
 
-3 - java -jar .\award-0.0.1-SNAPSHOT.jar para executar
+Caminho padrão na raiz do projeto
 
-4 - Depois de iniciado o projeto é possível acessar o banco de dados no endereço http://localhost:8081/h2-console ( sem senha).
+![image](https://user-images.githubusercontent.com/61691394/140646189-c688d838-c2b6-40c7-9d02-99461180ce01.png)
 
-5 - Para acessar o endpoint http://localhost:8081/award/v1/intervals
 
-6 - Para testar o endpoint com o swagger, acessar http://localhost:8081/swagger-ui.htm
+mvn package para construir o projeto.
+
+java -jar .\award-0.0.1-SNAPSHOT.jar para executar
+
+Depois de iniciado o projeto é possível acessar o banco de dados no endereço http://localhost:8081/h2-console ( sem senha).
+
+Para acessar o endpoint http://localhost:8081/award/v1/intervals
+
+Para testar o endpoint com o swagger, acessar http://localhost:8081/swagger-ui.htm
