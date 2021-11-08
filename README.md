@@ -23,3 +23,8 @@ Depois de iniciado o projeto é possível acessar o banco de dados no endereço 
 Para acessar o endpoint http://localhost:8081/award/v1/intervals
 
 Para testar o endpoint com o swagger, acessar http://localhost:8081/swagger-ui.htm
+
+Os testes estão no seguinte diretório
+
+![image](https://user-images.githubusercontent.com/61691394/140817013-7ce2f3da-94b8-41b7-beb0-29aacf5f6437.png)
+
