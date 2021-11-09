@@ -17,8 +17,8 @@ import java.util.List;
 @SpringBootTest
 class ProducerTest {
 
-	@Value("${url.movie.list}")
-	private String url;
+//	@Value("${url.movie.list}")
+//	private String url;
 	@Value("${filename}")
 	private String filename;
 
@@ -33,7 +33,6 @@ class ProducerTest {
 	@BeforeEach
 	void setup() throws IOException {
 
-		fileService.downloadFile(url, filename);
 	}
 
 	@Test

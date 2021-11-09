@@ -20,8 +20,8 @@ import java.util.List;
 @SpringBootTest
 class AwardTest {
 
-	@Value("${url.movie.list}")
-	private String url;
+//	@Value("${url.movie.list}")
+//	private String url;
 	@Value("${filename}")
 	private String filename;
 
@@ -33,7 +33,7 @@ class AwardTest {
 	@BeforeEach
 	void setup() throws IOException {
 
-		fileService.downloadFile(url, filename);
+//		fileService.downloadFile(url, filename);
 	}
 
 	@Test
