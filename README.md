@@ -1,5 +1,5 @@
 # Golden Raspberry Awards
-Projeto Texo IT
+Projeto Texo IT - SpringBoot | Java 17 | H2 | Swagger
 
 Projeto desenvolvido com SpringBoot e java 17.
 
